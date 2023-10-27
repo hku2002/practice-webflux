@@ -16,6 +16,7 @@ public class BackpressureStrategyBufferDropLatestExample {
      */
     public static void main(String[] args) throws InterruptedException {
         Flux.interval(Duration.ofMillis(300L))
+                .doOnNext(emit -> log.info("emitted: {}", emit))
                 .onBackpressureBuffer(
                         2,
                         dropped -> log.info("Overflow & dropped: {}", dropped),
