@@ -1,4 +1,4 @@
-package com.example.first.ex05;
+package com.example.first.ex04;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.BufferOverflowStrategy;
@@ -8,11 +8,11 @@ import reactor.core.scheduler.Schedulers;
 import java.time.Duration;
 
 @Slf4j
-public class BackpressureStrategyBufferDropLatestExample {
+public class BackpressureStrategyBufferDropOldestExample {
 
     /*
      * Backpressure Buffer Latest 전략
-     * -> 버퍼가 가득 찼을 때 버퍼 안에서 가장 나중에(Latest) 버퍼로 들어온 데이터부터 Drop 하는 전략
+     * -> 버퍼가 가득 찼을 때 버퍼 안에서 가장 오래된(Oldest) 버퍼로 들어온 데이터부터 Drop 하는 전략
      */
     public static void main(String[] args) throws InterruptedException {
         Flux.interval(Duration.ofMillis(300L))
@@ -20,7 +20,7 @@ public class BackpressureStrategyBufferDropLatestExample {
                 .onBackpressureBuffer(
                         2,
                         dropped -> log.info("Overflow & dropped: {}", dropped),
-                        BufferOverflowStrategy.DROP_LATEST
+                        BufferOverflowStrategy.DROP_OLDEST
                 )
                 .doOnNext(onNext -> log.info("doOnNext: {}", onNext))
                 .publishOn(
