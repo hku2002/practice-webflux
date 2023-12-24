@@ -1,6 +1,6 @@
 package com.example.mvcstoredisplay.domain.entity;
 
-import com.example.mvcstoredisplay.global.entity.BaseEntity;
+import com.example.mvcstoredisplay.global.common.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

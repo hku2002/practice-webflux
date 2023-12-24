@@ -1,4 +1,4 @@
-package com.example.mvcstoredisplay.global.entity;
+package com.example.mvcstoredisplay.global.common.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
