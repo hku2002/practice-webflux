@@ -1,4 +1,4 @@
-package com.example.mvcstoredisplay.domain;
+package com.example.mvcstoredisplay.domain.entity;
 
 import com.example.mvcstoredisplay.global.entity.BaseEntity;
 import jakarta.persistence.Entity;
