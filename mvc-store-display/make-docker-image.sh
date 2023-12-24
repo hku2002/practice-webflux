@@ -2,4 +2,4 @@
 
 ./gradlew bootJar
 
-docker build -t connie/store-display:latest .
+docker build -t connie/store-display-service:latest .
