@@ -11,7 +11,7 @@ public class AddressService {
 
     private final DeliveryAddressRepository deliveryAddressRepository;
 
-    public AddressResponseDto getDefaultAddress(Long id) {
-        return AddressResponseDto.createInstance(deliveryAddressRepository.findByIdAndIsDefault(id, true));
+    public AddressResponseDto getDefaultAddress(Long userId) {
+        return AddressResponseDto.createInstance(deliveryAddressRepository.findDefaultAddress(userId));
     }
 }
