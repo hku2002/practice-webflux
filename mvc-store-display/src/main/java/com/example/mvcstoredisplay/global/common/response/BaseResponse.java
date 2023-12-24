@@ -1,5 +1,8 @@
 package com.example.mvcstoredisplay.global.common.response;
 
+import lombok.Getter;
+
+@Getter
 public class BaseResponse<T> {
 
     private String status;

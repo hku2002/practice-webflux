@@ -1,7 +1,9 @@
 package com.example.mvcstoredisplay.global.common.response;
 
+import lombok.Getter;
 import org.springframework.http.ResponseEntity;
 
+@Getter
 public class CommonResponse {
 
     private CommonResponse() {}
