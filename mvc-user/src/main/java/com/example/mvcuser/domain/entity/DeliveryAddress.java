@@ -16,16 +16,16 @@ public class DeliveryAddress extends BaseEntity {
     private Long id;
     private String address;
     private String zipCode;
-    private boolean isDefaultDelivery;
+    private boolean isDefault;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
 
     @Builder
-    public DeliveryAddress(Long id, String address, String zipCode, boolean isDefaultDelivery, User user) {
+    public DeliveryAddress(Long id, String address, String zipCode, boolean isDefault, User user) {
         this.id = id;
         this.address = address;
         this.zipCode = zipCode;
-        this.isDefaultDelivery = isDefaultDelivery;
+        this.isDefault = isDefault;
         this.user = user;
     }
 }

@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DeliveryAddressRepository extends JpaRepository<DeliveryAddress, Long> {
+
+    DeliveryAddress findByIdAndIsDefault(Long id, boolean isDefault);
+
 }
