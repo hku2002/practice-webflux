@@ -27,8 +27,8 @@ public class HomeService {
                 List<DisplayStoreResponseDto> storeDisplayResponse = tuple.getT2();
 
                 return Mono.just(HomeResponseDto.builder()
-                        .addressResponseDto(addressResponse)
-                        .displayStoreResponseDto(storeDisplayResponse)
+                        .address(addressResponse)
+                        .displayStores(storeDisplayResponse)
                         .build());
         });
     }
