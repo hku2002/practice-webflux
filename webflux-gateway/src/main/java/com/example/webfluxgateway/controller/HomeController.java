@@ -14,9 +14,9 @@ public class HomeController {
 
     private final HomeService homeService;
 
-    @RequestMapping("/home/display/{id}/users/{userId}")
-    public Mono<HomeResponseDto> getHomeItems(@PathVariable int id, @PathVariable int userId) {
-        return homeService.getDisplayStore(id, userId);
+    @RequestMapping("/home/display/users/{userId}")
+    public Mono<HomeResponseDto> getHomeItems(@PathVariable int userId) {
+        return homeService.getDisplayStore(userId);
     }
 
 }

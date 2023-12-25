@@ -14,10 +14,10 @@ public class HomeService {
     private final StoreDisplayClient storeDisplayClient;
     private final UserClient userClient;
 
-    public Mono<HomeResponseDto> getDisplayStore(int id, int userId) {
+    public Mono<HomeResponseDto> getDisplayStore(int userId) {
         return userClient.requestAddress(userId)
                 .flatMap(address -> storeDisplayClient
-                        .requestStores(id)
+                        .requestHomeStores()
                         .collectList()
                         .map(storeDisplay -> HomeResponseDto.builder()
                                 .addressResponseDto(address)

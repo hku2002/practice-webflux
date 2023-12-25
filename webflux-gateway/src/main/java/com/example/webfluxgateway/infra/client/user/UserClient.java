@@ -12,19 +12,17 @@ import java.time.Duration;
 public class UserClient {
 
     private final WebClient webClient;
-    private final String userBaseUrl = "http://localhost:8090";
 
     public UserClient(WebClient webClient) {
         this.webClient = webClient
                 .mutate()
-                .baseUrl(userBaseUrl)
+                .baseUrl("http://localhost:8090")
                 .build();
     }
 
     public Mono<AddressResponseDto> requestAddress(int userId) {
         return webClient.method(HttpMethod.GET)
-                .uri(uriBuilder -> uriBuilder.path(userBaseUrl)
-                        .queryParam("userId", String.valueOf(userId))
+                .uri(uriBuilder -> uriBuilder.path("/user/address/" + userId)
                         .build())
                 .retrieve()
                 .bodyToMono(AddressResponseDto.class)

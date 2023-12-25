@@ -21,10 +21,9 @@ public class StoreDisplayClient {
                 .build();
     }
 
-    public Flux<DisplayStoreResponseDto> requestStores(int id) {
+    public Flux<DisplayStoreResponseDto> requestHomeStores() {
         return webClient.method(HttpMethod.GET)
-                .uri(uriBuilder -> uriBuilder.path(storeDisplayBaseUrl)
-                        .queryParam("id", String.valueOf(id))
+                .uri(uriBuilder -> uriBuilder.path("/display/stores")
                         .build())
                 .retrieve()
                 .bodyToFlux(DisplayStoreResponseDto.class)
