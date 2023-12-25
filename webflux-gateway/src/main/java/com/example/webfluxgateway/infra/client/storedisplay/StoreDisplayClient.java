@@ -16,7 +16,7 @@ public class StoreDisplayClient {
     public StoreDisplayClient(WebClient webClient) {
         this.webClient = webClient
                 .mutate()
-                .baseUrl("http://localhost:8080")
+                .baseUrl("http://store-display-service:8080")
                 .build();
     }
 

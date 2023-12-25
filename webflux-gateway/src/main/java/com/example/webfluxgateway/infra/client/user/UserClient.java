@@ -16,7 +16,7 @@ public class UserClient {
     public UserClient(WebClient webClient) {
         this.webClient = webClient
                 .mutate()
-                .baseUrl("http://localhost:8090")
+                .baseUrl("http://user-service:8080")
                 .build();
     }
 
