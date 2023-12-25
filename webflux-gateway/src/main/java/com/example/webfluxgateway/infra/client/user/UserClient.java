@@ -23,7 +23,7 @@ public class UserClient extends BaseClient {
     public UserClient(WebClient webClient) {
         this.webClient = webClient
                 .mutate()
-                .baseUrl("http://user-service:8080")
+                .baseUrl("http://user-service:8090")
                 .filter(logRequest())
                 .filter(logResponse())
                 .build();
