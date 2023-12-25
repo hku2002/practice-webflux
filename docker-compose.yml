@@ -16,6 +16,14 @@ services:
     networks:
       - webflux-net
 
+  webflux-gateway-service:
+    image: connie/webflux-gateway-service:latest
+    container_name: webflux-gateway-service
+    ports:
+      - "9090:8080"
+    networks:
+      - webflux-net
+
 networks:
   webflux-net:
     name: webflux-network
