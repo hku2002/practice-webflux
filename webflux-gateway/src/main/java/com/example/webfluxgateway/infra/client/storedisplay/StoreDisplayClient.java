@@ -12,12 +12,11 @@ import java.time.Duration;
 public class StoreDisplayClient {
 
     private final WebClient webClient;
-    private final String storeDisplayBaseUrl = "http://localhost:8080";
 
     public StoreDisplayClient(WebClient webClient) {
         this.webClient = webClient
                 .mutate()
-                .baseUrl(storeDisplayBaseUrl)
+                .baseUrl("http://localhost:8080")
                 .build();
     }
 
