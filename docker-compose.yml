@@ -3,16 +3,12 @@ services:
   user-service:
     image: connie/user-service:latest
     container_name: user-service
-    ports:
-      - "8090:8080"
     networks:
       - webflux-net
 
   store-display-service:
     image: connie/store-display-service:latest
     container_name: store-display-service
-    ports:
-      - "8080:8080"
     networks:
       - webflux-net
 
