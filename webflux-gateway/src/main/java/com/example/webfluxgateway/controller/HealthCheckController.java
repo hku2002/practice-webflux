@@ -1,5 +1,6 @@
 package com.example.webfluxgateway.controller;
 
+import com.example.webfluxgateway.global.common.response.BaseResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -8,8 +9,8 @@ import reactor.core.publisher.Mono;
 public class HealthCheckController {
 
     @GetMapping("/ping")
-    public Mono<String> checkPing() {
-        return Mono.just("pong");
+    public Mono<BaseResponse<String>> checkPing() {
+        return Mono.just(new BaseResponse<>("pong"));
     }
 
 }
