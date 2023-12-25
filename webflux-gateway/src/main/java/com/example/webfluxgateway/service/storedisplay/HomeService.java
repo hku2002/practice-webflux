@@ -1,11 +1,15 @@
 package com.example.webfluxgateway.service.storedisplay;
 
+import com.example.webfluxgateway.dto.AddressResponseDto;
+import com.example.webfluxgateway.dto.DisplayStoreResponseDto;
 import com.example.webfluxgateway.dto.HomeResponseDto;
 import com.example.webfluxgateway.infra.client.storedisplay.StoreDisplayClient;
 import com.example.webfluxgateway.infra.client.user.UserClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -15,14 +19,18 @@ public class HomeService {
     private final UserClient userClient;
 
     public Mono<HomeResponseDto> getDisplayStore(int userId) {
-        return userClient.requestAddress(userId)
-                .flatMap(address -> storeDisplayClient
-                        .requestHomeStores()
-                        .collectList()
-                        .map(storeDisplay -> HomeResponseDto.builder()
-                                .addressResponseDto(address)
-                                .displayStoreResponseDto(storeDisplay)
-                                .build()));
+        return Mono.zip(
+                userClient.requestAddress(userId),
+                storeDisplayClient.requestHomeStores()
+        ).flatMap(tuple -> {
+                AddressResponseDto addressResponse = tuple.getT1();
+                List<DisplayStoreResponseDto> storeDisplayResponse = tuple.getT2();
+
+                return Mono.just(HomeResponseDto.builder()
+                        .addressResponseDto(addressResponse)
+                        .displayStoreResponseDto(storeDisplayResponse)
+                        .build());
+        });
     }
 
 }
