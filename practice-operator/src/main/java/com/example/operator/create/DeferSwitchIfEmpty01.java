@@ -10,25 +10,29 @@ public class DeferSwitchIfEmpty01 {
 
     public static void main(String[] args) throws InterruptedException {
         log.info("========== v1 ==========");
-        Mono.just("Good morning! v1")
+        Mono<String> monoV1 = Mono.just("Good morning! v1")
                 .delayElement(Duration.ofSeconds(2L))
-                .switchIfEmpty(sayHello())
-                .subscribe(result -> log.info("result v1(no defer) : {}", result));
+                .switchIfEmpty(sayHello());
         Thread.sleep(2500L);
+        monoV1.subscribe(result -> {
+            log.info("result : {}", result);
+            log.info("========== v2 ==========");
+        });
 
-        log.info("========== v2 ==========");
-        Mono.just("Good morning! v2")
+        Mono<String> monoV2 = Mono.just("Good morning! v2")
                 .delayElement(Duration.ofSeconds(2L))
-                .switchIfEmpty(Mono.defer(DeferSwitchIfEmpty01::sayHello))
-                .subscribe(result -> log.info("result v2(defer) : {}", result));
+                .switchIfEmpty(Mono.defer(DeferSwitchIfEmpty01::sayHello));
         Thread.sleep(2500L);
+        monoV2.subscribe(result -> {
+            log.info("result : {}", result);
+            log.info("========== v3 ==========");
+        });
 
-        log.info("========== v3 ==========");
-        Mono.empty()
+        Mono<Object> monoV3 = Mono.empty()
                 .delayElement(Duration.ofSeconds(2L))
-                .switchIfEmpty(Mono.defer(DeferSwitchIfEmpty01::sayHello))
-                .subscribe(result -> log.info("result v3(empty + defer) : {}", result));
+                .switchIfEmpty(Mono.defer(DeferSwitchIfEmpty01::sayHello));
         Thread.sleep(2500L);
+        monoV3.subscribe(result -> log.info("result : {}", result));
     }
 
     public static Mono<String> sayHello() {
