@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 import java.time.LocalDateTime;
 
 @Slf4j
-public class DeferSample {
+public class DeferSample01 {
 
     public static void main(String[] args) throws InterruptedException {
         log.info("main started!");
