@@ -9,18 +9,25 @@ import java.time.Duration;
 public class DeferSwitchIfEmpty01 {
 
     public static void main(String[] args) throws InterruptedException {
+        log.info("========== v1 ==========");
         Mono.just("Good morning! v1")
                 .delayElement(Duration.ofSeconds(2L))
                 .switchIfEmpty(sayHello())
                 .subscribe(result -> log.info("result v1(no defer) : {}", result));
         Thread.sleep(2500L);
 
-        log.info("====================");
-
+        log.info("========== v2 ==========");
         Mono.just("Good morning! v2")
                 .delayElement(Duration.ofSeconds(2L))
                 .switchIfEmpty(Mono.defer(DeferSwitchIfEmpty01::sayHello))
                 .subscribe(result -> log.info("result v2(defer) : {}", result));
+        Thread.sleep(2500L);
+
+        log.info("========== v3 ==========");
+        Mono.empty()
+                .delayElement(Duration.ofSeconds(2L))
+                .switchIfEmpty(Mono.defer(DeferSwitchIfEmpty01::sayHello))
+                .subscribe(result -> log.info("result v3(empty + defer) : {}", result));
         Thread.sleep(2500L);
     }
 
