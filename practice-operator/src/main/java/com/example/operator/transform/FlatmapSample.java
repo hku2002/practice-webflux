@@ -10,6 +10,7 @@ public class FlatmapSample {
         Flux.just("A", "B", "C")
                 .flatMap(alphabet ->
                         Flux.just("Hello", "World")
+                                .map(data -> alphabet + ": " + data)
                 )
                 .subscribe(result -> log.info("result: {}", result));
     }
