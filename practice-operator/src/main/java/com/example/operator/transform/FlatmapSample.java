@@ -19,6 +19,12 @@ public class FlatmapSample {
                         Flux.range(0, 5)
                                 .map(data -> num + data))
                 .subscribe(result -> log.info("result: {}", result));
+
+        String[][] strArr = {{"AA", "BB", "CC"}, {"DD", "EE", "FF"}};
+        Flux.just(strArr)
+                .flatMap(Flux::fromArray)
+                .map(String::toLowerCase)
+                .subscribe(result -> log.info("result: {}" , result));
     }
 
 }
