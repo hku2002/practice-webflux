@@ -13,6 +13,12 @@ public class FlatmapSample {
                                 .map(data -> alphabet + ": " + data)
                 )
                 .subscribe(result -> log.info("result: {}", result));
+
+        Flux.just(1)
+                .flatMap(num ->
+                        Flux.range(0, 5)
+                                .map(data -> num + data))
+                .subscribe(result -> log.info("result: {}", result));
     }
 
 }
