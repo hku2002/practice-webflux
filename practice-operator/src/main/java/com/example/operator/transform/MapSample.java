@@ -10,6 +10,10 @@ public class MapSample {
         Flux.just("AA", "BB", "CC")
                 .map(String::toLowerCase)
                 .subscribe(result -> log.info("result: {}", result));
+
+        Flux.just(10_000, 20_000, 30_000)
+                .map(data -> data + 1000)
+                .subscribe(result -> log.info("calculate result: {}", result));
     }
 
 }
