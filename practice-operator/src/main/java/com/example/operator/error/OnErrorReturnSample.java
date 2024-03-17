@@ -21,6 +21,13 @@ public class OnErrorReturnSample {
                 .map(data -> data.getName().toLowerCase())
                 .onErrorReturn("자바 바이블")
                 .subscribe(result -> log.info("result: {}", result));
+
+        Mono
+                .just(book)
+                .map(data -> data.getName().toLowerCase())
+                .onErrorReturn(NullPointerException.class, "Reactor 바이블")
+                .onErrorReturn(IllegalStateException.class, "잘못된 상태값")
+                .subscribe(result -> log.info("result: {}", result));
     }
 
 }
